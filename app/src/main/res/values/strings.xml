@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">ELD-SDK</string>
+
+    <string name="scan_vehicle">Scan for vehicle</string>
+
+
+    <string name="booking_time_not_started">Booking Time Not Started</string>
+    <string name="invalid_booking_info">Invalid booking information</string>
+    <string name="booking_session_expired">Your Booking session has ended</string>
+    <string name="no_internet">No Internet connection</string>
+
+    <string name="bt_enabled">BT enabled</string>
+    <string name="bt_not_enabled">BT not enabled</string>
+
+
+    <string name="title_location_permission">Location Permission</string>
+    <string name="text_location_permission">To Continue, Please Allow App to Access Location</string>
+    <string name="title_location_permission_in_back">Location Permission in Background</string>
+    <string name="text_location_permission_in_back">To Continue, Please Allow App to Access Location in background</string>
+    <string name="ok">OK</string>
+    <string name="permission_granted">Permission granted</string>
+    <string name="permission_not_granted">Permission not granted</string>
+
+    <string name="title_activity_permission">Activity Recognition Permission</string>
+    <string name="text_activity_permission">To Continue, Please Allow App to Access Activity Recognition Service</string>
+    <string name="notification_desc">Collecting data</string>
+
+
+
+    <string name="dialog_location_enable_title">To continue, please enable location services</string>
+    <string name="dialog_location_enable_yes">Enable</string>
+    <string name="dialog_location_enable_no">Cancel</string>
+
+    <string name="lock">lock</string>
+    <string name="unlock">unlock</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="clear_device">Clear Device</string>
+</resources>

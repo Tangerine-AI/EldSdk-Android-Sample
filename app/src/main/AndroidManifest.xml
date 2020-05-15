@@ -1,0 +1,52 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ai.tangerine.senseeldsdk">
+
+    <!-- todo step-9 manifest-->
+    <permission android:name="ai.tangerine.eldsdk.permission"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="ai.tangerine.eldsdk.permission" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:name=".SampleApplication"
+        android:theme="@style/AppTheme" >
+
+        <activity android:name=".screens.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".screens.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".screens.ScanActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- todo step-10-a manifest-->
+        <receiver android:name=".StatusReceiver">
+            <intent-filter>
+                <action android:name="ai.tangerine.eldsdk.INIT_SDK" />
+                <action android:name="ai.tangerine.eldsdk.START_CONNECTION" />
+            </intent-filter>
+        </receiver>
+        
+        <service android:name=".DataService"
+            android:exported="false"
+            android:enabled="true"
+            android:stopWithTask="false"
+            />
+    </application>
+</manifest>
