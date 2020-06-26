@@ -33,7 +33,7 @@ Open `build.gradle` inside module that you want to use the library and simply ad
 
 ```
 dependencies {
-   implementation 'ai.tangerine:eldsdk:1.0.0-alpha11'
+   implementation 'ai.tangerine:eldsdk:1.0.0-alpha12'
 }
 ```
 
