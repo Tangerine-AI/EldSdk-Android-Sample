@@ -33,7 +33,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     
     // todo-2
-    implementation 'ai.tangerine:eldsdk:1.0.0-alpha14'
+    implementation 'ai.tangerine:eldsdk:1.0.0-alpha15'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
