@@ -33,7 +33,7 @@ Open `build.gradle` inside module that you want to use the library and simply ad
 
 ```
 dependencies {
-   implementation 'ai.tangerine:eldsdk:1.0.0-alpha16'
+   implementation 'ai.tangerine:eldsdk:1.0.0-alpha19'
 }
 ```
 
@@ -314,37 +314,68 @@ Gets the saved device name. If not saved it returns null or empty string
         
 ```
 
+#### ELDData
+
+1.  ``` altitude ```      : Location altitude
+2.  ``` latitude ```      : Location latitude
+3.  ``` longitude ```     : Location longitude
+4.  ``` courseDegree ```  : Location course degree
+5.  ``` trackTimeUTC ```  : log tracked time in UTC (in milliseconds)
+6.  ``` trackTime ```     : log tracked time in current time zone (in milliseconds)
+7.  ``` vehicleSpeed ```  : Speed from vehicle obd port
+8.  ``` vehicleRPM ```    : RPM from vehicle obd port
+9.  ``` vehicleMiles ```  : Total vehicle miles covered by vehicle so far
+10. ``` vehicleHours ```  : Total Engine hours spent by vehicle so far
+11. ``` vin ```           : VIN fot vehicle where device is installed
+12. ``` engineStatus ```  : Engine status. 1 if engine is on otherwise 0.
+13. ``` sequenceNum ```   : unique sequence number of data stream
+14. ``` isOngoingData ``` : true if its ongoing fresh data, false if its logged data
+15. ``` appVersion ```    : Hardware app version
+16. ``` eventType ```     : Event Type for the current log. Event types are discussed in EventType Section below.
+
+#### EventType
+
+EventTypes are present in ```ELDConstants```.
+With Event type, user identifies the logs for various scenarios like Engine On-Off, vehicle Motion Start-Stop and Ongoing data logs.
+
+1.  ``` TYPE_PERIODIC (0) ```      : Periodic data log. periodic data fetched at every 5s interval when vehicle engine is on.
+2.  ``` TYPE_ENGINE_ON (1) ```     : Engine On log. Log recorded when vehicle engine started.
+3.  ``` TYPE_ENGINE_OFF (2) ```    : Engine Off log. Log recorded when vehicle engine stopped.
+4.  ``` TYPE_MOTION_START (3) ```  : Vehicle Motion started log. Log recorded when vehicle speed goes above 5 mph
+5.  ``` TYPE_MOTION_STOP (4) ```   : Vehicle Motion stopped log. Log recorded when vehicle speed is 0 mph for at-least 3 seconds.
+
+
 #### Error handling
 
 There are several error scenarios come when booking validation happens or while executing the command. User has to pass ``` ELDListener ``` object to handle error case.
 
 Please find below list of errors that can occur during the booking validation.
 
-1. ``` ELDConstants.ERROR_BT_NOT_ENABLED ```  :  This error occurs in case when user has not enabled the bluetooth.
-2. ``` ELDConstants.ERROR_BT_NOT_AVAILABLE ```  :  This error occurs in case when device does not support bluetooth.
-3. ``` ELDConstants.ERROR_LOCATION_NOT_ENABLED ``` : This error occurs in case when user has not enabled the Location.
-4. ``` ELDConstants.ERROR_LOCATION_PERMISSION_NOT_GRATED ``` : This error occurs in case when user has not granted Location permission.
+1. ``` ELDConstants.ERROR_BT_NOT_ENABLED ```                             :  This error occurs in case when user has not enabled the bluetooth.
+2. ``` ELDConstants.ERROR_BT_NOT_AVAILABLE ```                           :  This error occurs in case when device does not support bluetooth.
+3. ``` ELDConstants.ERROR_LOCATION_NOT_ENABLED ```                       : This error occurs in case when user has not enabled the Location.
+4. ``` ELDConstants.ERROR_LOCATION_PERMISSION_NOT_GRATED ```             : This error occurs in case when user has not granted Location permission.
 5. ``` ELDConstants.ERROR_ACTIVITY_RECOGNITION_PERMISSION_NOT_GRATED ``` : This error occurs in case when user has not granted Activity Recognition permission. Android version 10 onwards this permission is required for background ble scan.
-6. ``` ELDConstants.ERROR_LOCATION_PERMISSION_IN_BACK_NOT_GRATED ``` : This error occurs in case when user has not granted Location permission in background. Android version 10 onwards this permission is required for background ble scan.
-7. ``` ELDConstants.ERROR_PERMISSION_DENIED_TO_CONNECT ``` : This error occurs when another app is already connected to vehicle/device.
+6. ``` ELDConstants.ERROR_LOCATION_PERMISSION_IN_BACK_NOT_GRATED ```     : This error occurs in case when user has not granted Location permission in background. Android version 10 onwards this permission is required for background ble scan.
+7. ``` ELDConstants.ERROR_PERMISSION_DENIED_TO_CONNECT ```               : This error occurs when another app is already connected to vehicle/device.
 
 
 #### State information while connecting to the device or executing the lock/unlock feature
 
 Please find below list of state that can occur during the connection and execution of lock/unlock features.
 
-1. ``` ELDConstants.STATE_CONNECTING ```  :  App starts connecting to the device.
-2. ``` ELDConstants.STATE_CONNECTED ```  :  App is connected to device.
-3. ``` ELDConstants.STATE_DISCONNECTED ``` : App is disconnected to device because of range.
+1. ``` ELDConstants.STATE_CONNECTING ```       : App starts connecting to the device.
+2. ``` ELDConstants.STATE_CONNECTED ```        : App is connected to device.
+3. ``` ELDConstants.STATE_DISCONNECTED ```     : App is disconnected to device because of range.
 4. ``` ELDConstants.STATE_DEVICE_NOT_FOUND ``` : When app is unable to connect to the device after ~25 seconds of time or app is not near to the device.
-5. ``` ELDConstants.DEVICE_CLEAR_SUCCESS ``` : When device is cleared successfully.
+5. ``` ELDConstants.DEVICE_CLEAR_SUCCESS ```   : When device is cleared successfully.
 
 
 #### Exception information while connecting to the device or executing the lock/unlock feature
 
-1. ``` ELDConstants.EXCEPTION_SDK_NOT_INIT ```  :  When SDK is not initialised.
-2. ``` ELDConstants.EXCEPTION_ELD_LISTENER ```  :  When ``` ELDListener ``` is null.
-3. ``` ELDConstants.EXCEPTION_CONTEXT ```  :  When ``` Context ``` is null.
+1. ``` ELDConstants.EXCEPTION_SDK_NOT_INIT ```      :  When SDK is not initialised.
+2. ``` ELDConstants.EXCEPTION_ELD_LISTENER ```      :  When ``` ELDListener ``` is null.
+3. ``` ELDConstants.EXCEPTION_CONTEXT ```           :  When ``` Context ``` is null.
 4. ``` ELDConstants.EXCEPTION_DEVICE_NAME_NULL ```  :  When ``` device name ``` is null or empty while ``` saveDevice() ```.
 5. ``` ELDConstants.EXCEPTION_DEVICE_NOT_SAVED ```  :  When ``` device name ``` is not saved and trying to execute the ``` connect() ``` .
 
